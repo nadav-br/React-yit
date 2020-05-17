@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Form from './components/Form'
+import Layout from './components/Layout'
 import './App.css';
 
-function App() {
+const App = () => {
+  const [addImage, setAddImage] = useState(null);
+  const [pickColor, setPickColor] = useState('');
+  const [catName, setCatName] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editSubtitle, setEditSubtitle] = useState('');
+  const [editAuthor, setEditAuthor] = useState('');
+  console.log("img to layout",addImage) 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App">      
+      <Form 
+      setAddImage={setAddImage}
+      setPickColor={setPickColor} 
+      setCatName={setCatName}
+      setEditTitle={setEditTitle} 
+      setEditSubtitle={setEditSubtitle} 
+      setEditAuthor={setEditAuthor} />  
+      <Layout 
+      addImage={addImage}
+      pickColor={pickColor} 
+      catName={catName} 
+      title={editTitle}  
+      subtitle={editSubtitle} 
+      author={editAuthor} />
     </div>
   );
 }
