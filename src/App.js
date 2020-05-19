@@ -10,17 +10,14 @@ const App = () => {
   const [catName, setCatName] = useState('');
   const [editTitle, setEditTitle] = useState('');
   const [editSubtitle, setEditSubtitle] = useState('');
-  const [editAuthor, setEditAuthor] = useState('');
-console.log(imageSrcs)
-debugger;
-  const deleteImg = key => {
-    
-    setImageSrcs(prevState =>( {
-      ...prevState,
-      [key]: ''
-    }))
+  const [editAuthor, setEditAuthor] = useState('');  
+
+  const deleteImg = key => {    
+    let newObjState = Object.assign({}, imageSrcs);
+    delete newObjState[key];
+    setImageSrcs(newObjState);   
   }
-  debugger;
+
   return (
     <div className="App">      
       <Form 

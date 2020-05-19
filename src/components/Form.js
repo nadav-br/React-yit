@@ -6,7 +6,6 @@ const img2Ref = useRef(null);
 
 const getImageSrcs = () => {
     const srcs = {};
-
     if(img1Ref.current.value) srcs.img1 = img1Ref.current.value;
     if(img2Ref.current.value) srcs.img2 = img2Ref.current.value;
     props.setImageSrcs(srcs);

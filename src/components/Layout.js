@@ -4,32 +4,29 @@ import Output from './Output';
 const Layout = (props) => {   
 
     
-    const isMoreThen1Image = () => {
-        console.log(props.imageSrcs);        
-        return props.imageSrcs.length > 1;
+    const isMoreThen1Image = () => {                
+        return props.imageSrcs.length > 1
     }
 
     const [moveX, setMoveX] = useState(0);
 
-    const prevBtn = () => {
-        console.log(moveX)
+    const prevBtn = () => {        
         moveX === 0 ? setMoveX(moveX -100) : setMoveX(moveX)
     };
 
     const nextBtn = () => {
-        console.log(moveX)
         moveX === -100 ? setMoveX(moveX +100) : setMoveX(moveX)
     };
 
     return (
         <div className="layout">            
             <div className="image-section">
-            <div className="image-container" style={{transform: `translateX(${moveX}%)`}}>
-                {props.imageSrcs.map((url, i) => {
-                    if(!url) return;
-                    return <img key={i} className="image-slider" src={url} />})
-                }
-            </div>
+                <div className="image-container" style={{transform: `translateX(${moveX}%)`}}>
+                    {props.imageSrcs.map((url, i) => {
+                        if(!url) return;
+                        return <img key={i} className="image-slider" src={url} />})
+                    }
+                </div>
             { isMoreThen1Image() &&
                 <>
                     <button id="prevBtn" onClick={prevBtn}>
@@ -53,4 +50,4 @@ const Layout = (props) => {
 }
 
 
-export default Layout
+export default Layout;
