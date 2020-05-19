@@ -13,9 +13,12 @@ const App = () => {
   const [editAuthor, setEditAuthor] = useState('');  
 
   const deleteImg = key => {    
-    let newObjState = Object.assign({}, imageSrcs);
-    delete newObjState[key];
-    setImageSrcs(newObjState);   
+    // let newObjState = Object.assign({}, imageSrcs);
+    // delete newObjState[key];
+    // setImageSrcs(newObjState);   
+    let newObjState = {...imageSrcs}
+      delete newObjState[key];
+      setImageSrcs(newObjState);
   }
 
   return (
