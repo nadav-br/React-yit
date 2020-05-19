@@ -1,23 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Output from './Output';
 
-const Layout = (props) => {
+const Layout = (props) => {   
 
-    console.log("props",props)
+    
+    const isMoreThen1Image = () => {
+        console.log(props.imageSrcs);        
+        return props.imageSrcs.length > 1;
+    }
+
+    const [moveX, setMoveX] = useState(0);
+
+    const prevBtn = () => {
+        console.log(moveX)
+        moveX === 0 ? setMoveX(moveX -100) : setMoveX(moveX)
+    };
+
+    const nextBtn = () => {
+        console.log(moveX)
+        moveX === -100 ? setMoveX(moveX +100) : setMoveX(moveX)
+    };
+
     return (
-        <div className="layout">
-            {/* <img src="../assets/left.svg" alt ="Prev" className = "prev" />             */}
-            <img className="imageSlider" src={props.addImage}/*"https://media-cdn.tripadvisor.com/media/photo-s/08/4c/5e/1d/see-view-terrace.jpg"*/ height="200" width="252"></img>
-            <img className="imageSlider" src={props.addImage}/*"https://r-cf.bstatic.com/images/hotel/max1280x900/207/207805647.jpg"*/ height="200" width="252"></img>
-            <button id="prevBtn">Prev</button>                        
-            <button id="nextBtn">Next</button>
-
+        <div className="layout">            
+            <div className="image-section">
+            <div className="image-container" style={{transform: `translateX(${moveX}%)`}}>
+                {props.imageSrcs.map((url, i) => {
+                    if(!url) return;
+                    return <img key={i} className="image-slider" src={url} />})
+                }
+            </div>
+            { isMoreThen1Image() &&
+                <>
+                    <button id="prevBtn" onClick={prevBtn}>
+                    <i class="fas fa-chevron-left"></i>
+                    
+                    </button> 
+                    
+                    <button id="nextBtn" onClick={nextBtn}>
+                    <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                </>
+            }
+            </div>
             <p className="category" style={{backgroundColor: props.pickColor, color: "rgb(255, 255, 255)"}}>{props.catName}</p>
-            <h3>{props.title}</h3>
+            <h4>{props.title}</h4>
             <p>{props.subtitle}</p>
-            <p>{props.author}</p>   
+            <p class="author">{props.author}</p>   
         </div>
     )
 }
+
 
 export default Layout

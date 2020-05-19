@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef} from 'react';
 
 const Form = (props) =>  { 
+const img1Ref = useRef(null);
+const img2Ref = useRef(null);
 
-const [image, setImage] = useState([]);
+const getImageSrcs = () => {
+    const srcs = {};
 
-console.log('image',image)
-
-const addImg = (src) => ({
-    ...src, 
-    src
-})
+    if(img1Ref.current.value) srcs.img1 = img1Ref.current.value;
+    if(img2Ref.current.value) srcs.img2 = img2Ref.current.value;
+    props.setImageSrcs(srcs);
+}
 
     return (
         <div className="form">            
             <div className="upload" dir="rtl">
-                <input type="text" onChange={e => setImage(e.target.value)}/>
-                <button onClick={() => props.setAddImage([])}>מחק</button>
-                <input type="text" onChange={e => setImage(e.target.value)}/>
-                <button onClick={() => props.setAddImage([])}>מחק</button>            
+                <input type="text" ref={img1Ref}/>
+                <button onClick={() => props.deleteImg('img1')}>מחק</button>
+                <input type="text" ref={img2Ref} />
+                <button onClick={() => props.deleteImg('img2')}>מחק</button>            
             </div>
-            <button onClick={() => props.setAddImage(image)} className="uploadBtn" >הוסף תמונה</button>            
+            <button onClick={() => getImageSrcs()} className="uploadBtn" >הוסף תמונה</button>     
+                   
             <label> צבע רקע - שם קטגוריה</label>                     
             <select dir="rtl" onChange={e => {props.setPickColor(e.target.value)}}>
                 <option value="">בחר צבע</option>
