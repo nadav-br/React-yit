@@ -1,4 +1,4 @@
-import React, { useState, useRef} from 'react';
+import React, { useRef } from 'react';
 
 const Form = (props) =>  { 
 const img1Ref = useRef(null);
